@@ -1,6 +1,27 @@
 // import { Coordinate } from "./SnakeGame";
 
 // type SnakeMovements = "to right" | "to left" | "to bottom" | "to top";
+export default class Player {
+    private _playerCoordinate: number[];
+
+    constructor(x: number, y: number) {
+        this._playerCoordinate = [x, y];
+    }
+
+    public getCoordinates(): number[] {
+        return this._playerCoordinate;
+    }
+
+    private setCoordinates(x: number, y: number): void {
+        // Add logic to validate the new coordinates here
+        this._playerCoordinate = [x, y];
+    }
+
+    public movePlayer(x: number, y: number): void {
+        // Add logic before setting the coordinates
+        this.setCoordinates(x, y);
+    }
+}
 
 // export default class Snake {
 //   private movement: SnakeMovements;

@@ -1,60 +1,48 @@
-// import Snake from "./Snake";
-
-type Cell = "snake" | "food" | null;
-
-export interface Coordinate {
-  row: number;
-  col: number;
-}
+import Player from "./Player";
 
 export class GameEngine {
   private context: CanvasRenderingContext2D;
-  private boardSidesLength: number;
-  private numOfRowsAndCols: number;
-  private _gameBoard: Cell[][];
-  private _foodCoordinate: Coordinate;
-  // these two sets how often the re-render is
-  private readonly staggerFrame: number;
-  private currentFrameCount: number;
+  // private boardSidesLength: number;
+  // private numOfRowsAndCols: number;
+  // private _gameBoard: Cell[][];
 
-  private externalScore: number;
-  private setScore: React.Dispatch<React.SetStateAction<number>>;
-  private setIsGameOver: React.Dispatch<React.SetStateAction<boolean>>;
+  // // these two sets how often the re-render is
+  // private readonly staggerFrame: number;
+  // private currentFrameCount: number;
 
-  private internalPlayState: boolean;
+  // private externalScore: number;
+  // private setScore: React.Dispatch<React.SetStateAction<number>>;
+  // private setIsGameOver: React.Dispatch<React.SetStateAction<boolean>>;
 
-//   snake: Snake;
+  // private internalPlayState: boolean;
+
+  player: Player;
 
   constructor(
     context: CanvasRenderingContext2D,
-    boardSidesLength: number,
-    externalScore: number,
-    setScore: React.Dispatch<React.SetStateAction<number>>,
-    setIsGameOver: React.Dispatch<React.SetStateAction<boolean>>,
-    isPlaying: boolean
+    // boardSidesLength: number,
+    // externalScore: number,
+    // setScore: React.Dispatch<React.SetStateAction<number>>,
+    // setIsGameOver: React.Dispatch<React.SetStateAction<boolean>>,
+    // isPlaying: boolean
   ) {
     this.context = context;
 
-    // this.snake = new Snake();
-    this._foodCoordinate = {
-      row: -1,
-      col: -1,
-    };
+    this.player = new Player(10,10);
+    // this.boardSidesLength = boardSidesLength;
+    // this.numOfRowsAndCols = 26;
+    // this._gameBoard = [];
+    // this.externalScore = externalScore;
+    // this.setScore = setScore;
+    // this.setIsGameOver = setIsGameOver;
 
-    this.boardSidesLength = boardSidesLength;
-    this.numOfRowsAndCols = 26;
-    this._gameBoard = [];
-    this.externalScore = externalScore;
-    this.setScore = setScore;
-    this.setIsGameOver = setIsGameOver;
+    // // these 2 properties set how often the re-render is
+    // this.currentFrameCount = 0;
+    // this.staggerFrame = 8;
 
-    // these 2 properties set how often the re-render is
-    this.currentFrameCount = 0;
-    this.staggerFrame = 8;
-
-    this.internalPlayState = isPlaying;
+    // this.internalPlayState = isPlaying;
   }
-
+}
 //   get score() {
 //     if (this.snake.length === 0) {
 //       return 0;
@@ -62,22 +50,22 @@ export class GameEngine {
 //     return this.snake.length * 10 - this.snake.defaultlength * 10;
 //   }
 
-  private get gameBoard(): Cell[][] {
-    if (this._gameBoard.length === 0) {
-      const nRows = this.numOfRowsAndCols;
-      const nCols = this.numOfRowsAndCols;
+  // private get gameBoard(): Cell[][] {
+  //   if (this._gameBoard.length === 0) {
+  //     const nRows = this.numOfRowsAndCols;
+  //     const nCols = this.numOfRowsAndCols;
 
-      for (let i = 0; i < nRows; i++) {
-        this._gameBoard.push(Array.from(Array(nCols)).fill(null));
-      }
-    }
+  //     for (let i = 0; i < nRows; i++) {
+  //       this._gameBoard.push(Array.from(Array(nCols)).fill(null));
+  //     }
+  //   }
 
-    return this._gameBoard;
-  }
+  //   return this._gameBoard;
+  // }
 
-  private set gameBoard(newGameBoard: Cell[][]) {
-    this._gameBoard = newGameBoard;
-  }
+  // private set gameBoard(newGameBoard: Cell[][]) {
+  //   this._gameBoard = newGameBoard;
+  // }
 
 //   private get foodCoordinate() {
 //     const foodCoordInSnakeCoords = (foodRow: number, foodCol: number) => {
@@ -254,4 +242,3 @@ export class GameEngine {
 //     this.internalPlayState &&
 //       requestAnimationFrame(() => this.animate(this.internalPlayState));
 //   }
-}
